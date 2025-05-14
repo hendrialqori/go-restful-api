@@ -1,0 +1,6 @@
+CRUD SIMPLE API
+
+1. Setup project✅
+    - Dependency : Driver MySQL, HTTP Router, Validator ✅
+
+2. Create OPEN API
