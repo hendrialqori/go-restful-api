@@ -18,6 +18,7 @@ Ini adalah proyek sederhana RESTful API yang dibangun menggunakan **Golang**, de
 
 - **Golang (`net/http`)** — Web server native
 - **MySQL** — Database relasional
+- **julienschmidt/httprouter** — HTTP request router
 - **go-sql-driver/mysql** — Driver MySQL untuk Golang
 - **go-playground/validator/v10** — Validasi struct
 
