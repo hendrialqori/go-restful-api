@@ -10,8 +10,12 @@ import (
 
 type CategoryRepositoryImpl struct{}
 
+func NewCategoryRepository() CategoryRepository {
+	return &CategoryRepositoryImpl{}
+}
+
 func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, category domain.Category) domain.Category {
-	query := "insert into customer(name) values(?)"
+	query := "insert into category(name) values(?)"
 	result, err := tx.ExecContext(ctx, query, category.Name)
 	helper.PanicIfError(err)
 
@@ -40,24 +44,23 @@ func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.
 	query := "select id, name from category where id = ?"
 	rows, err := tx.QueryContext(ctx, query, categoryId)
 	helper.PanicIfError(err)
+	defer rows.Close()
 
 	category := domain.Category{}
-
 	if rows.Next() {
 		err := rows.Scan(&category.Id, &category.Name)
 		helper.PanicIfError(err)
 		return category, nil
-
 	} else {
 		return category, errors.New("category is not found")
 	}
-
 }
 
-func (repository *CategoryRepositoryImpl) FindALl(ctx context.Context, tx *sql.Tx, categoryId int) []domain.Category {
+func (repository *CategoryRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.Category {
 	query := "select id, name from category"
 	rows, err := tx.QueryContext(ctx, query)
 	helper.PanicIfError(err)
+	defer rows.Close()
 
 	var categories []domain.Category
 
