@@ -1,0 +1,31 @@
+# GET all categories
+GET http://localhost:3000/api/categories
+X-API-Key: OMKEGAS!
+Accept: : "application/json"
+
+
+### Get categories by ID
+GET http://localhost:3000/api/categories/10
+X-API-Key: OMKEGAS!
+Accept: : "application/json"
+
+### Create new categories
+POST http://localhost:3000/api/categories
+Content-Type: "application/json"
+Accept: "application/json"
+
+{
+    "name": ""
+}
+
+### Update categories by id
+PUT  http://localhost:3000/api/categories/2
+Content-Type: "application/json"
+
+{
+    "name": "Snack"
+}
+
+### Delete categories by id
+DELETE http://localhost:3000/api/categories/4
+Content-Type: "application/json"
